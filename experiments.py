@@ -1,6 +1,7 @@
 from astar import search
 from markov import build_markov_matrix, analyze_absorption
 from simulation import simulate_trajectories
+import matplotlib.pyplot as plt
 
 # Grille d'exemple
 grid = [
@@ -30,3 +31,47 @@ if res_astar:
         P_mat, c_map = build_markov_matrix(grid, res_astar['path'], eps)
         t_avg, prob_th = analyze_absorption(P_mat, c_map, start, goal)
         print(f"{eps:<8.1f} | {sim_success:>15.1f}% | {prob_th*100:>13.1f}% | {t_avg:>6.1f}")
+        
+
+print("\n=== EXPÉRIENCE E.3: Graph ε vs Probabilité ===")
+
+epsilons = [0.0, 0.1, 0.2, 0.3]
+prob_mc = []
+prob_markov = []
+
+if res_astar:
+    for eps in epsilons:
+        sim_success = simulate_trajectories(
+            grid,
+            res_astar['path'],
+            goal,
+            eps,
+            n_sims=1000
+        )
+
+        P_mat, c_map = build_markov_matrix(
+            grid,
+            res_astar['path'],
+            eps
+        )
+
+        t_avg, prob_th = analyze_absorption(
+            P_mat,
+            c_map,
+            start,
+            goal
+        )
+
+        prob_mc.append(sim_success / 100)
+        prob_markov.append(prob_th)
+
+plt.figure()
+plt.plot(epsilons, prob_mc)
+plt.plot(epsilons, prob_markov)
+
+plt.xlabel("Epsilon (ε)")
+plt.ylabel("Probabilité d'atteindre GOAL")
+plt.title("Impact de l'incertitude sur la robustesse du plan (A*)")
+plt.legend(["Monte Carlo", "Markov Théorie"])
+plt.grid(True)
+plt.show()

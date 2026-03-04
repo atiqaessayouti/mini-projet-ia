@@ -2,7 +2,7 @@ import random
 from astar import get_neighbors
 
 def simulate_trajectories(grid, path, goal, epsilon, n_sims=1000):
-    """Simuler N trajectoires et estimer P(atteindre GOAL) [cite: 64, 65]"""
+ 
     if not path: return 0.0
     success_count = 0
     policy = {path[i]: path[i+1] for i in range(len(path)-1)}

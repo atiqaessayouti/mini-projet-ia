@@ -2,11 +2,11 @@ import heapq
 import time
 
 def manhattan(p, goal):
-    """Heuristique Manhattan: h(n) = |xn - xg| + |yn - yg|"""
+    
     return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
 
 def get_neighbors(state, grid):
-    """L-jiran (4-voisins) li machi obstacles"""
+    
     x, y = state
     neighbors = []
     for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
@@ -16,7 +16,7 @@ def get_neighbors(state, grid):
     return neighbors
 
 def search(grid, start, goal, mode='astar'):
-    """Implémentation A*, UCS, et Greedy"""
+    
     start_time = time.time()
     open_list = []
     h_start = manhattan(start, goal) if mode != 'ucs' else 0
