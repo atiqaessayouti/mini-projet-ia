@@ -56,8 +56,9 @@ Figure 4 : Comparaison des taux de réussite prévus par le modèle théorique m
 ## 📈 Expérience 3 : Matrice de Transition Stochastique
 Modélisation de la dynamique de l'agent via la matrice P pour ε = 0.2.
 
-![Heatmap Matrice P](Heatmap.png)
-*(Remplacer Heatmap.png par l'image de la matrice bleue)*
+<img width="452" height="410" alt="image" src="https://github.com/user-attachments/assets/d327a9dd-1d58-43ad-a003-0a3ecc706122" />
+
+Figure 5 : Visualisation (Heatmap) de la matrice de transition stochastique P modélisant la dynamique de l'agent pour ε = 0.2.
 
 > **Analyse :** La heatmap confirme que notre matrice P est bien stochastique et creuse. Les fortes probabilités (bleu foncé) se concentrent sur la diagonale (suivi du plan optimal), tandis que les valeurs plus claires illustrent les probabilités de glissement vers des états latéraux.
 
